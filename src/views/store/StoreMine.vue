@@ -1,0 +1,27 @@
+<!--我的页面-->
+<template>
+    <div class="store-mine">
+        <nav-bar></nav-bar>
+    </div>
+</template>
+
+<script type="text/ecmascript-6">
+    import { storeHomeMixin } from '../../utils/mixin'
+    import NavBar from '../../components/common/NavBar'
+
+    export default {
+        mixins: [storeHomeMixin],
+        components: {
+            NavBar
+        }
+    }
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+    @import "../../assets/styles/global";
+
+    .store-mine {
+        width: 100%;
+        height: 100%;
+    }
+</style>

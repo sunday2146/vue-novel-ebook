@@ -1,0 +1,17 @@
+本地Nginx资源服务器路径：http://192.168.209.1:9000/epub/History/2013_Book_FungalDiseaseInBritainAndTheUn.epub
+
+本地首页访问路径：http://192.168.1.138:8080/#/ebook/History|2017_Book_InterdisciplinaryPerspectivesO
+               http://192.168.1.138:8080/#/ebook/LifeSciences|2016_Book_TechnologicalAndInstitutionalI
+               http://127.0.0.1:8080/#/ebook/Fantasy|DouPoCangQiong
+               http://127.0.0.1:8080/#/ebook/LifeSciences|2016_Book_TechnologicalAndInstitutionalI
+
+华为云Nginx资源服务器路径：http://www.potato369.com:8000/epub/History/2013_Book_FungalDiseaseInBritainAndTheUn.epub
+
+慕课网完整代码git地址： https://git.imooc.com/coding-285/vue-imooc-ebook.git
+webstorm快捷键大全地址：https://blog.csdn.net/liuwei063608/article/details/40375877
+
+epubjs全文搜索源代码目录：https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks-%28v0.3%29
+
+本地Nginx静态资源服务器路径：VUE_APP_RES_URL=http://192.168.1.138:9000
+华为云Nginx静态资源服务器路径：VUE_APP_RES_URL=http://www.potato369.com:8000
+充值页面模仿：https://blog.csdn.net/LIUHUAN0520/article/details/78920729
