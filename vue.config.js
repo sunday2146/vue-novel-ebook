@@ -28,8 +28,8 @@ module.exports = {
   configureWebpack: {
     performance: {
       hints: 'warning',
-      maxAssetSize: 524228,
-      maxEntrypointSize: 524288
+      maxAssetSize: 524228 * 10,
+      maxEntrypointSize: 524288 * 10
     }
   }
 }
