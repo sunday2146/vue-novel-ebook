@@ -101,6 +101,9 @@
             width: px2rem(117.5);
             padding: 0 px2rem(5);
             box-sizing: border-box;
+            .title {
+              margin-top: px2rem(5);
+            }
             .author {
               margin-top: px2rem(15);
             }

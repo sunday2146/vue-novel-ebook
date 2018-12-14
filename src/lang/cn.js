@@ -1,8 +1,8 @@
 const messages = {
     home: {
-        title: '书城',
+        title: '书屋',
         hint: '玄幻，奇幻，仙侠，悬疑',
-        guessYouLike: '猜你喜欢',
+        guessYouLike: '热门小说',
         change: '换一批',
         clear: '清空',
         hotSearch: '热门搜索',
@@ -10,10 +10,10 @@ const messages = {
         sameAuthor: '与$1同作者',
         sameReader: '对$1感兴趣的人也在读',
         readPercent: '阅读$2的人，$1都在读',
-        recommend: '热门推荐',
+        recommend: '主编推荐',
         seeAll: '查看全部',
         readers: '$1人同时在读',
-        featured: '精选',
+        featured: '精品小说',
         category: '分类',
         books: '本书',
         readNow: '立即阅读',
@@ -127,7 +127,7 @@ const messages = {
         minutes: '分钟',
         cancel: '取消',
         shelf: '书架',
-        store: '书城',
+        store: '书屋',
         charge: '充值',
         mine: '我的'
     },

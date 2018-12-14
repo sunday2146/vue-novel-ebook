@@ -185,7 +185,7 @@ export function getCategoryName(id) {
 export function categoryText(category, vue) {
     switch (category) {
         case 1:
-            return vue.$t('category.campus')
+            return vue.$t('category.fantasfy')
         case 2:
             return vue.$t('category.military')
         case 3:
@@ -195,10 +195,10 @@ export function categoryText(category, vue) {
         case 5:
             return vue.$t('category.wuXia')
         case 6:
-            return vue.$t('category.fantasfy')
-        case 7:
-            return vue.$t('category.mystery')
-        case 8:
             return vue.$t('category.xianXia')
+        case 7:
+            return vue.$t('category.campus')
+        case 8:
+            return vue.$t('category.mystery')
     }
 }
