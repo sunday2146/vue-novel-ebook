@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "epubjs": "^0.3.71",
+    "epubjs": "0.3.71",
     "localforage": "^1.7.3",
     "vue": "^2.5.17",
     "vue-create-api": "^0.2.0",
