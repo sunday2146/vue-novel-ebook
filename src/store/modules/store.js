@@ -7,7 +7,8 @@ const store = {
     shelfSelected: [],
     shelfTitleVisible: true,
     shelfCategory: [], // 书架分类列表数据
-    currentType: 1 // 书架列表为1，书架分类列表为2
+    currentType: 1, // 书架列表为1，书架分类列表为2
+    openid: null // 用户微信openid
   },
   mutations: {
     SET_HOT_SEARCH_OFFSETY(state, y) {
@@ -33,6 +34,9 @@ const store = {
     },
     SET_CURRENT_TYPE(state, type) {
       state.currentType = type
+    },
+    SET_OPENID(state, openid) {
+      state.openid = openid
     }
   }
 }

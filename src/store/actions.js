@@ -79,6 +79,9 @@ const actions = {
     },
     setCurrentType ({ commit }, type) {
         return commit('SET_CURRENT_TYPE', type)
+    },
+    setOpenid ({ commit }, openid) {
+        return commit('SET_OPENID', openid)
     }
 }
 
