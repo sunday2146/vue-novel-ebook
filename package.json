@@ -12,6 +12,7 @@
     "epubjs": "0.3.71",
     "localforage": "^1.7.3",
     "vue": "^2.5.17",
+    "vue-cookies": "^1.5.12",
     "vue-create-api": "^0.2.0",
     "vue-i18n": "^8.1.0",
     "vue-router": "^3.0.1",

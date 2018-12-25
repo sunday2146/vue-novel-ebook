@@ -5,34 +5,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { storeHomeMixin } from './utils/mixin'
-  export default {
-    mixins: [storeHomeMixin],
-    methods: {
-    },
-    create() {
-      //如果url里有openid, 设置进cookie
-      var openid = this.$route.query.openid;
-      if (typeof openid !== 'undefined') {
-        var exp = new Date();
-        exp.setTime(exp.getTime() + 3600 * 1000);//过期时间60分钟
-        document.cookie = 'openid=' + openid + ";expires=" + exp.toGMTString();
-      }
-      //获取openid
-      if (getCookie('openid') == null) {
-        location.href = config.openidUrl + '?returnUrl=' + encodeURIComponent(config.sellUrl + '/#/');
-      }
-    }
-  }
-  function getCookie(name) {
-    var arr;
-    var reg = new RegExp('(^| )' + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
-      return unescape(arr[2]);
-    } else {
-      return null;
-    }
-  }
+  export default {}
   document.addEventListener('DOMContentLoaded', () => {
     const html = document.querySelector('html')
     let fontSize = window.innerWidth / 10

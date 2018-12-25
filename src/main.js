@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueCookie from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -11,6 +12,7 @@ import './utils/create-api'
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
+Vue.use(VueCookie)
 
 new Vue({
   router,

@@ -251,8 +251,9 @@
                     detail({
                         fileName: this.fileName
                     }).then(response => {
-                        if (response.status === 200 && response.data.error_code === 0 && response.data.data) {
+                        if (response.status === 200) {
                             const data = response.data.data
+                            console.log(data)
                             this.bookItem = data
                             this.cover = this.bookItem.cover
                             let rootFile = data.rootFile
