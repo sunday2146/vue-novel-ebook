@@ -13,6 +13,10 @@
         mixins: [storeHomeMixin],
         components: {
             NavBar
+        },
+        created() {
+            let openid = this.$cookies.get('openid')
+            alert(openid)
         }
     }
 </script>
