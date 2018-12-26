@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import { storeHomeMixin } from '../../utils/mixin'
   import HotSearchList from './HotSearchList'
 
