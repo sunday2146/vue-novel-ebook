@@ -106,7 +106,7 @@
                 location.href = process.env.VUE_APP_BASE_URL + '/wechat/authorize?returnUrl=' + encodeURIComponent(process.env.VUE_APP_HOME_NGINX_URL + '/#/')
             }
             this.login = false
-            home().then(response => {
+            home(this.openid).then(response => {
                 if (response && response.status === 200 && response.data && response.data.err_no === 0) {
                     const data = response.data.data
                     const randomIndex = Math.floor(Math.random() * data.random.length)

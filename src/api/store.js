@@ -41,10 +41,13 @@ export function shelf () {
     })
 }
 
-export function home () {
+export function home (openid) {
     return axios({
         method: 'get',
-        url: `${process.env.VUE_APP_BASE_URL}/book/home`
+        url: `${process.env.VUE_APP_BASE_URL}/book/home`,
+        params: {
+            buyerOpenid: openid
+        },
     })
 }
 
