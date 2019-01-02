@@ -67,6 +67,7 @@
 
     .nav-bar {
         display: flex;
+        flex-direction: row;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -75,5 +76,8 @@
         height: px2rem(50);
         line-height: px2rem(50);
         z-index: 110;
+        .m-tabbar-text{
+            flex: 1;
+        }
     }
 </style>
