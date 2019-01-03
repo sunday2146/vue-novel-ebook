@@ -97,6 +97,11 @@
                 this.isSelected = true
             }
         },
+        created() {
+            let openid = this.$cookies.get('openid')
+            this.openid = openid
+            // alert(this.openid)
+        },
         computed: {
             tabs () {
                 return [
@@ -154,21 +159,21 @@
                 top: realPx(60),
                 bottom: realPx(50),
                 colorFontBlue: true,
-                isSelected: false
+                isSelected: false,
+                openid: ''
             }
         },
         mounted () {
-            userInfo().then(response => {
+            userInfo(this.openid).then(response => {
                 if (response && response.status === 200) {
                     const data = response.data
-                    this.userInfo = data.userInfo
-                    if (this.userInfo && this.userInfo.userAvatar && this.userInfo.userNickName && this.userInfo.id && this.userInfo.balance) {
+                    this.userInfo = data.data
+                    if (this.userInfo) {
                         this.userAvatar = this.userInfo.userAvatar
                         this.userNickName = this.userInfo.userNickName
                         this.id = this.userInfo.id
                         this.balance = this.userInfo.balance
                     }
-                    // console.log(this.userInfo)
                 }
             })
         }

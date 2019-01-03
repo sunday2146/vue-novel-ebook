@@ -16,7 +16,19 @@
         },
         created() {
             let openid = this.$cookies.get('openid')
-            alert(openid)
+            this.openid = openid
+        },
+        data () {
+            return {
+                userInfo: null,
+                userAvatar: '',
+                userNickName: '',
+                id: '',
+                balance: '',
+                colorFontBlue: true,
+                isSelected: false,
+                openid: ''
+            }
         }
     }
 </script>

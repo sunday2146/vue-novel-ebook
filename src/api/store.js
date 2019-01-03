@@ -47,7 +47,7 @@ export function home (openid) {
         url: `${process.env.VUE_APP_BASE_URL}/book/home`,
         params: {
             buyerOpenid: openid
-        },
+        }
     })
 }
 
@@ -68,9 +68,12 @@ export function list () {
     })
 }
 
-export function userInfo () {
+export function userInfo (openid) {
     return axios({
         method: 'get',
-        url: `${process.env.VUE_APP_BASE_URL}/user/info`
+        url: `${process.env.VUE_APP_BASE_URL}/user/info`,
+        params: {
+            openid: openid
+        }
     })
 }
