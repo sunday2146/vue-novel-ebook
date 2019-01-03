@@ -7,7 +7,7 @@
                 <div class="info-account-left-wrapper">
                     <div class="account-head-img">
                         <span class="head-img">
-                            <img :src="userAvatar">
+                            <img v-lazy="userAvatar">
                         </span>
                     </div>
                     <div class="account-nick-name-and-id">

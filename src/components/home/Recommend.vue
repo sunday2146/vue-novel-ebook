@@ -4,7 +4,7 @@
     <div class="recommend-list">
       <div class="recommend-item" v-for="(item, index) in data" :key="index" @click="showBookDetail(item)">
         <div class="img-wrapper">
-          <img class="img" :src="item.cover">
+          <img class="img" v-lazy="item.cover">
         </div>
         <div class="content-wrapper">
           <div class="title title-medium" ref="title">{{item.title}}</div>

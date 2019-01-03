@@ -3,7 +3,7 @@
         <div class="carousel">
             <ul class="imgsWrp">
                 <li v-for="item in imgsArray" :key="item.bannerId">
-                    <img class="banner-img" :src="item.bannerImg" :alt="item.title">
+                    <img class="banner-img" v-lazy="item.bannerImg" :alt="item.title">
                 </li>
             </ul>
             <!--<p><span>1</span>/{{imgsArray.length}}</p>-->

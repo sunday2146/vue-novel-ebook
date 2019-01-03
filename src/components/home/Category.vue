@@ -10,8 +10,8 @@
           </div>
           <div class="img-wrapper">
             <div class="img-group">
-              <img class="img" :src="item.img1">
-              <img class="img2" :src="item.img2">
+              <img class="img" v-lazy="item.img1">
+              <img class="img2" v-lazy="item.img2">
             </div>
           </div>
         </div>

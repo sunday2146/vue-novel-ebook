@@ -9,6 +9,7 @@ import './assets/styles/global.scss'
 // import './mock'
 import './utils/boost'
 import './utils/create-api'
+import './lazy'
 
 Vue.config.productionTip = false
 Vue.config.devtools = true

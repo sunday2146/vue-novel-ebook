@@ -4,7 +4,7 @@
     <div class="guess-you-like-list">
       <div class="guess-you-like-item" v-for="(item, index) in showData" :key="index" @click="showBookDetail(item)">
         <div class="img-wrapper">
-          <img class="img" :src="item.cover">
+          <img class="img" v-lazy="item.cover">
         </div>
         <div class="content-wrapper">
           <div class="title title-big" ref="title">{{item.title}}</div>

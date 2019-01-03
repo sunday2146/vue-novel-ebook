@@ -2,8 +2,8 @@
     <div class="nav-bar">
         <tab-bar v-model="select" v-for="(item, index) in navTabs" :key="index">
             <tab-bar-item :data="{id: item.id, link: item.nav}">
-                <img :src="item.icon" slot="icon-normal">
-                <img :src="item.selectedIcon" slot="icon-active">
+                <img v-lazy="item.icon" slot="icon-normal">
+                <img v-lazy="item.selectedIcon" slot="icon-active">
                 <span class="m-tabbar-text">{{item.text}}</span>
             </tab-bar-item>
         </tab-bar>

@@ -1,7 +1,7 @@
 <template>
   <div class="cover-title-wrapper">
     <div class="cover-title-left-wrapper">
-      <img class="cover-img" :src="cover">
+      <img class="cover-img" v-lazy="cover">
     </div>
     <div class="cover-title-right-wrapper">
       <div class="detail-cover-title-wrapper">

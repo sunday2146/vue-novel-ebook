@@ -19,7 +19,7 @@
     </div>
     <div class="slide-contents-book-wrapper" v-show="!searchVisible">
       <div class="slide-contents-book-img-wrapper">
-        <img :src="cover" class="slide-contents-book-img">
+        <img v-lazy="cover" class="slide-contents-book-img">
       </div>
       <div class="slide-contents-book-info-wrapper">
         <div class="slide-contents-book-title">
