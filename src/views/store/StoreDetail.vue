@@ -98,11 +98,12 @@
         },
         computed: {
             desc() {
-                if (this.description) {
-                    return this.description.substring(0, 100)
-                } else {
-                    return ''
-                }
+                // if (this.description) {
+                //     return this.description.substring(0, 100)
+                // } else {
+                //     return ''
+                // }
+                return this.metadata ? this.metadata.description : ''
             },
             flatNavigation() {
                 if (this.navigation) {
@@ -236,9 +237,9 @@
                                     this.$refs.scroll.refresh()
                                 }
                                 this.displayed = true
-                                const reg = new RegExp('<.+?>', 'g')
-                                const text = section.output.replace(reg, '').replace(/\s\s/g, '')
-                                this.description = text
+                                // const reg = new RegExp('<.+?>', 'g')
+                                // const text = section.output.replace(reg, '').replace(/\s\s/g, '')
+                                // this.description = text
                             })
                         }
                     }
