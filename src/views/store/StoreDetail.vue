@@ -98,12 +98,11 @@
         },
         computed: {
             desc() {
-                // if (this.description) {
-                //     return this.description.substring(0, 100)
-                // } else {
-                //     return ''
-                // }
-                return this.metadata ? this.metadata.description : ''
+                if (this.description) {
+                    return this.description.substring(0, 100)
+                } else {
+                    return ''
+                }
             },
             flatNavigation() {
                 if (this.navigation) {
@@ -257,6 +256,7 @@
                             this.bookItem = data
                             this.cover = this.bookItem.cover
                             let rootFile = data.rootFile
+                            this.description = data.introduction
                             if (rootFile.startsWith('/')) {
                                 rootFile = rootFile.substring(1, rootFile.length)
                             }
