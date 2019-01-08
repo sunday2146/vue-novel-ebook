@@ -12,11 +12,11 @@
                     </div>
                     <div class="account-nick-name-and-id">
                         <div class="account-nick-name">
-                            <span class="account-title">{{$t('charge.nickName')}}：</span>
+                            <span class="account-title">{{$t('charge.nickName')}}</span>
                             <span class="nick-name colorFontBlue">{{ userNickName }}</span>
                         </div>
                         <div class="account-id">
-                            <span class="account-title">{{$t('charge.id')}}：</span>
+                            <span class="account-title">{{$t('charge.id')}}</span>
                             <span class="id colorFontBlue">{{ id }}</span>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="info-account-right-wrapper">
                     <div class="info-money">
-                        <span class="money-title">{{$t('charge.money')}}：</span>
+                        <span class="money-title">{{$t('charge.money')}}</span>
                         <span class="money-info colorFontBlue">{{ balance }}书币</span>
                     </div>
                 </div>
@@ -34,25 +34,25 @@
             <div class="store-charge-item-list-wrapper">
                 <div class="store-charge-item-wrapper">
                     <div class="store-charge-item-title">
-                        <span class="title">微信支付</span>
+                        <span class="title">{{$t('charge.pay')}}</span>
                         <span class="info">{{$t('charge.title')}}</span>
                     </div>
                     <div class="store-charge-item-money" v-for="(item, index) in tabs" :key="index">
-                        <div class="charge-item-money-wrapper" @click="selected" :class="{'isSelected': isSelected}">
+                        <div class="charge-item-money-wrapper" @click="selected(item, index)" :class="{'isSelected' : activeIndex === index}">
                             <div class="money-info">
-                                <span class="money">{{item.label1}}</span>
+                                <span class="money">{{item.money}}</span>
                             </div>
                             <div class="shubi-info-wrapper">
-                                <span class="shubi-info">{{item.label2}}</span>
-                                <span class="shubi-song-info">{{item.label3}}</span>
+                                <span class="shubi-info">{{item.moneyBi}}</span>
+                                <span class="shubi-song-info">{{item.songMoneyBi}}</span>
                             </div>
                             <div class="charge-item-paihang-wrapper">
-                                <span class="charge-item-paihang">{{item.label4}}</span>
+                                <span class="charge-item-paihang">{{item.paiHang}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="store-charge-btn">
-                        <span class="charge-btn">立即充值</span>
+                        <span class="charge-btn" @click.stop.prevent="onCharge">立即充值</span>
                     </div>
                 </div>
             </div>
@@ -92,62 +92,22 @@
             onScroll (offsetY) {
                 this.setOffsetY(offsetY)
             },
-            selected () {
-                // console.log('selected')
-                this.isSelected = true
+            selected (item, index) {
+                this.activeIndex = index
+                this.selectProduct(this.activeIndex)
+            },
+            selectProduct(activeIndex) {
+                this.selectedProduct = this.tabs[activeIndex]
+            },
+            onCharge() {
+                if (this.selectedProduct === null) {
+                    this.selectProduct(this.activeIndex)
+                }
             }
         },
         created() {
             let openid = this.$cookies.get('openid')
             this.openid = openid
-            // alert(this.openid)
-        },
-        computed: {
-            tabs () {
-                return [
-                    {
-                        label1: this.$t('charge.money10'),
-                        label2: this.$t('charge.moneyBi10'),
-                        label3: '',
-                        label4: '',
-                        label5: this.$t('charge.moneyBi10')
-                    },
-                    {
-                        label1: this.$t('charge.money30'),
-                        label2: this.$t('charge.moneyBi30'),
-                        label3: '',
-                        label4: '',
-                        label5: this.$t('charge.moneyBi10')
-                    },
-                    {
-                        label1: this.$t('charge.money50'),
-                        label2: this.$t('charge.moneyBi50'),
-                        label3: this.$t('charge.moneyDuo50'),
-                        label4: this.$t('charge.moneyHot50'),
-                        label5: this.$t('charge.moneyBi10')
-                    },
-                    {
-                        label1: this.$t('charge.money100'),
-                        label2: this.$t('charge.moneyBi100'),
-                        label3: this.$t('charge.moneyDuo100'),
-                        label4: '',
-                        label5: this.$t('charge.moneyBi10')
-                    },
-                    {
-                        label1: this.$t('charge.money180'),
-                        label2: this.$t('charge.moneyBi180'),
-                        label3: this.$t('charge.moneyDuo180'),
-                        label4: this.$t('charge.moneyHot180')
-                    },
-                    {
-                        label1: this.$t('charge.money365'),
-                        label2: this.$t('charge.moneyBi365'),
-                        label3: this.$t('charge.moneyDuo365'),
-                        label4: this.$t('charge.moneyHot365'),
-                        label5: this.$t('charge.moneyBi10')
-                    }
-                ]
-            }
         },
         data () {
             return {
@@ -160,7 +120,59 @@
                 bottom: realPx(50),
                 colorFontBlue: true,
                 isSelected: false,
-                openid: ''
+                openid: '',
+                activeIndex: 2,
+                tabs: [
+                    {
+                        money: this.$t('charge.money10'),
+                        productId: this.$t('charge.productId10'),
+                        moneyBi: this.$t('charge.moneyBi10'),
+                        songMoneyBi: this.$t('charge.moneyDuo10'),
+                        paiHang: this.$t('charge.moneyHot10'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc10')
+                    },
+                    {
+                        money: this.$t('charge.money30'),
+                        productId: this.$t('charge.productId30'),
+                        moneyBi: this.$t('charge.moneyBi30'),
+                        songMoneyBi: this.$t('charge.moneyDuo30'),
+                        paiHang: this.$t('charge.moneyHot30'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc30')
+                    },
+                    {
+                        money: this.$t('charge.money50'),
+                        productId: this.$t('charge.productId50'),
+                        moneyBi: this.$t('charge.moneyBi50'),
+                        songMoneyBi: this.$t('charge.moneyDuo50'),
+                        paiHang: this.$t('charge.moneyHot50'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc50')
+                    },
+                    {
+                        money: this.$t('charge.money100'),
+                        productId: this.$t('charge.productId100'),
+                        moneyBi: this.$t('charge.moneyBi100'),
+                        songMoneyBi: this.$t('charge.moneyDuo100'),
+                        paiHang: this.$t('charge.moneyHot100'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc100')
+                    },
+                    {
+                        money: this.$t('charge.money180'),
+                        productId: this.$t('charge.productId180'),
+                        moneyBi: this.$t('charge.moneyBi180'),
+                        songMoneyBi: this.$t('charge.moneyDuo180'),
+                        paiHang: this.$t('charge.moneyHot180'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc180')
+                    },
+                    {
+                        money: this.$t('charge.money365'),
+                        productId: this.$t('charge.productId365'),
+                        moneyBi: this.$t('charge.moneyBi365'),
+                        songMoneyBi: this.$t('charge.moneyDuo365'),
+                        paiHang: this.$t('charge.moneyHot365'),
+                        moneyBiDesc: this.$t('charge.moneyBiDesc365')
+                    }
+                ],
+                selectedProduct: null
             }
         },
         mounted () {
