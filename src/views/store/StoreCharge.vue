@@ -103,6 +103,12 @@
                 if (this.selectedProduct === null) {
                     this.selectProduct(this.activeIndex)
                 }
+                // console.log(this.selectedProduct)
+                location.href = `${process.env.VUE_APP_BASE_URL}/pay/create?productId=` + this.selectedProduct.productId +
+                    '&openid=' + this.openid +
+                    '&returnUrl=' + encodeURIComponent(`${process.env.VUE_APP_HOME_NGINX_URL}` + this.$route.path) +
+                    '&productQuantity=' + this.selectedProduct.moneyBiVal +
+                    '&orderAmount=' + this.selectedProduct.moneyVal
             }
         },
         created() {
@@ -125,48 +131,60 @@
                 tabs: [
                     {
                         money: this.$t('charge.money10'),
+                        moneyVal: this.$t('charge.money10Val'),
                         productId: this.$t('charge.productId10'),
                         moneyBi: this.$t('charge.moneyBi10'),
+                        moneyBiVal: this.$t('charge.moneyBi10Val'),
                         songMoneyBi: this.$t('charge.moneyDuo10'),
                         paiHang: this.$t('charge.moneyHot10'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc10')
                     },
                     {
                         money: this.$t('charge.money30'),
+                        moneyVal: this.$t('charge.money30Val'),
                         productId: this.$t('charge.productId30'),
                         moneyBi: this.$t('charge.moneyBi30'),
+                        moneyBiVal: this.$t('charge.moneyBi30Val'),
                         songMoneyBi: this.$t('charge.moneyDuo30'),
                         paiHang: this.$t('charge.moneyHot30'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc30')
                     },
                     {
                         money: this.$t('charge.money50'),
+                        moneyVal: this.$t('charge.money50Val'),
                         productId: this.$t('charge.productId50'),
                         moneyBi: this.$t('charge.moneyBi50'),
+                        moneyBiVal: this.$t('charge.moneyBi50Val'),
                         songMoneyBi: this.$t('charge.moneyDuo50'),
                         paiHang: this.$t('charge.moneyHot50'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc50')
                     },
                     {
                         money: this.$t('charge.money100'),
+                        moneyVal: this.$t('charge.money100Val'),
                         productId: this.$t('charge.productId100'),
                         moneyBi: this.$t('charge.moneyBi100'),
+                        moneyBiVal: this.$t('charge.moneyBi100Val'),
                         songMoneyBi: this.$t('charge.moneyDuo100'),
                         paiHang: this.$t('charge.moneyHot100'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc100')
                     },
                     {
                         money: this.$t('charge.money180'),
+                        moneyVal: this.$t('charge.money180Val'),
                         productId: this.$t('charge.productId180'),
                         moneyBi: this.$t('charge.moneyBi180'),
+                        moneyBiVal: this.$t('charge.moneyBi180Val'),
                         songMoneyBi: this.$t('charge.moneyDuo180'),
                         paiHang: this.$t('charge.moneyHot180'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc180')
                     },
                     {
                         money: this.$t('charge.money365'),
+                        moneyVal: this.$t('charge.money365Val'),
                         productId: this.$t('charge.productId365'),
                         moneyBi: this.$t('charge.moneyBi365'),
+                        moneyBiVal: this.$t('charge.moneyBi365Val'),
                         songMoneyBi: this.$t('charge.moneyDuo365'),
                         paiHang: this.$t('charge.moneyHot365'),
                         moneyBiDesc: this.$t('charge.moneyBiDesc365')
