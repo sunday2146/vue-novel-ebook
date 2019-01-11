@@ -103,12 +103,10 @@
                 if (this.selectedProduct === null) {
                     this.selectProduct(this.activeIndex)
                 }
-                // console.log(this.selectedProduct)
-                location.href = `${process.env.VUE_APP_BASE_URL}/pay/create?productId=` + this.selectedProduct.productId +
+                location.href = `${process.env.VUE_APP_BASE_URL}/pay/create` +
+                    '?productId=' + this.selectedProduct.productId +
                     '&openid=' + this.openid +
-                    '&returnUrl=' + encodeURIComponent(`${process.env.VUE_APP_HOME_NGINX_URL}` + this.$route.path) +
-                    '&productQuantity=' + this.selectedProduct.moneyBiVal +
-                    '&orderAmount=' + this.selectedProduct.moneyVal
+                    '&returnUrl=' + encodeURIComponent(`${process.env.VUE_APP_HOME_NGINX_URL}` + this.$route.path)
             }
         },
         created() {
