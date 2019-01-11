@@ -106,7 +106,7 @@
                 location.href = `${process.env.VUE_APP_BASE_URL}/pay/create` +
                     '?productId=' + this.selectedProduct.productId +
                     '&openid=' + this.openid +
-                    '&returnUrl=' + encodeURIComponent(`${process.env.VUE_APP_HOME_NGINX_URL}` + this.$route.path)
+                    '&returnUrl=' + encodeURIComponent(`${process.env.VUE_APP_HOME_NGINX_URL}` + '/#/store/charge')
             }
         },
         created() {
