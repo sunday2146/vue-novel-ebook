@@ -81,7 +81,7 @@
     import { detail } from '../../api/store'
     import { px2rem, realPx } from '../../utils/utils'
     import { getLocalForage } from '../../utils/localForage'
-    import { getBookShelf, saveBookShelf, saveNavigation, saveMetadata } from '../../utils/localStorage'
+    import { getBookShelf, saveBookShelf, saveCover, saveNavigation, saveMetadata } from '../../utils/localStorage'
     import { addToShelf, removeFromBookShelf } from '../../utils/store'
     import { storeShelfMixin } from '../../utils/mixin'
     import Epub from 'epubjs'
@@ -258,6 +258,7 @@
                             const data = response.data.data
                             this.bookItem = data
                             this.cover = this.bookItem.cover
+                            saveCover(this.fileName, this.cover)
                             let rootFile = data.rootFile
                             this.description = data.introduction
                             if (rootFile.startsWith('/')) {

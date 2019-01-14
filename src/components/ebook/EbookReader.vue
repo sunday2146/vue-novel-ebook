@@ -23,10 +23,12 @@
         getTheme,
         saveTheme,
         getLocation,
+        getCover,
         getMetadata,
         getNavigation
     } from '../../utils/localStorage'
     import { getLocalForage } from '../../utils/localForage'
+    import { flatten } from '../../utils/book'
     global.ePub = Epub
     export default {
         mixins: [ebookMixin],
@@ -196,26 +198,48 @@
             //     })
             // },
             parseBook () {
-                this.book.loaded.cover.then(cover => {
-                    this.book.archive.createUrl(cover).then(url => {
-                        this.setCover(url)
+                /**
+                 * 获取封面图片路径，并且存储在localStorage
+                 */
+                let coverTmp = getCover(this.fileName)
+                if (coverTmp) {
+                    this.setCover(coverTmp)
+                } else {
+                    this.book.loaded.cover.then(cover => {
+                        this.book.archive.createUrl(cover).then(url => {
+                            this.setCover(url)
+                        })
                     })
-                })
-                this.setMetadata(getMetadata(this.fileName))
-                // this.book.loaded.metadata.then(metadata => {
-                //     this.setMetadata(metadata)
-                // })
-                // this.book.loaded.navigation.then(nav => {
-                //     const navItem = flatten(nav.toc)
-                //     function find (item, level = 0) {
-                //         return !item.parent ? level : find(navItem.filter(parentItem => parentItem.id === item.parent)[0], ++level)
-                //     }
-                //     navItem.forEach(item => {
-                //         item.level = find(item)
-                //     })
-                //     this.setNavigation(navItem)
-                // })
-                this.setNavigation(getNavigation(this.fileName))
+                }
+                /**
+                 * 获取metadata数据，并且存储在localStorage
+                 */
+                let metadataTmp = getMetadata(this.fileName)
+                if (metadataTmp) {
+                    this.setMetadata(metadataTmp)
+                } else {
+                    this.book.loaded.metadata.then(metadata => {
+                        this.setMetadata(metadata)
+                    })
+                }
+                /**
+                 * 获取navigation数据，并且存储在localStorage
+                 */
+                let navigationTmp = getNavigation(this.fileName)
+                if (navigationTmp) {
+                    this.setNavigation(navigationTmp)
+                } else {
+                    this.book.loaded.navigation.then(nav => {
+                        const navItem = flatten(nav.toc)
+                        function find (item, level = 0) {
+                            return !item.parent ? level : find(navItem.filter(parentItem => parentItem.id === item.parent)[0], ++level)
+                        }
+                        navItem.forEach(item => {
+                            item.level = find(item)
+                        })
+                        this.setNavigation(navItem)
+                    })
+                }
             },
             initEpub (url) {
                 this.book = new Epub(url)
