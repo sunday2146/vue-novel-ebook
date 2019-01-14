@@ -106,9 +106,7 @@
             },
             flatNavigation() {
                 if (this.navigation) {
-                    var navigation = Array.prototype.concat.apply([], Array.prototype.concat.apply([], this.doFlatNavigation(this.navigation.toc)))
-                    // console.log(navigation)
-                    return navigation
+                    return Array.prototype.concat.apply([], Array.prototype.concat.apply([], this.doFlatNavigation(this.navigation.toc)))
                 } else {
                     return []
                 }
@@ -232,7 +230,6 @@
                 })
                 this.book.loaded.navigation.then(nav => {
                     this.navigation = nav
-                    // console.log(this.fileName)
                     saveNavigation(this.fileName, this.navigation)
                     if (this.navigation.toc && this.navigation.toc.length > 1) {
                         const candisplay = this.display(this.navigation.toc[1].href)

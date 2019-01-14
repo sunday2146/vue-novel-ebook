@@ -22,9 +22,10 @@
         saveFontSize,
         getTheme,
         saveTheme,
-        getLocation
+        getLocation,
+        getMetadata,
+        getNavigation
     } from '../../utils/localStorage'
-    import { flatten } from '../../utils/book'
     import { getLocalForage } from '../../utils/localForage'
     global.ePub = Epub
     export default {
@@ -175,46 +176,46 @@
                     })
                 })
             },
-            initGesture () {
-                this.rendition.on('touchstart', event => {
-                    this.touchStartX = event.changedTouches[0].clientX
-                    this.touchStartTime = event.timeStamp
-                })
-                this.rendition.on('touchend', event => {
-                    const offsetX = event.changedTouches[0].clientX - this.touchStartX
-                    const time = event.timeStamp - this.touchStartTime
-                    if (time < 500 && offsetX > 40) {
-                        this.prevPage()
-                    } else if (time < 500 && offsetX < -40) {
-                        this.nextPage()
-                    } else {
-                        this.toggleTitleAndMenu()
-                    }
-                    event.preventDefault()
-                    event.stopPropagation()
-                })
-            },
+            // initGesture () {
+            //     this.rendition.on('touchstart', event => {
+            //         this.touchStartX = event.changedTouches[0].clientX
+            //         this.touchStartTime = event.timeStamp
+            //     })
+            //     this.rendition.on('touchend', event => {
+            //         const offsetX = event.changedTouches[0].clientX - this.touchStartX
+            //         const time = event.timeStamp - this.touchStartTime
+            //         if (time < 500 && offsetX > 40) {
+            //             this.prevPage()
+            //         } else if (time < 500 && offsetX < -40) {
+            //             this.nextPage()
+            //         } else {
+            //             this.toggleTitleAndMenu()
+            //         }
+            //         event.preventDefault()
+            //         event.stopPropagation()
+            //     })
+            // },
             parseBook () {
                 this.book.loaded.cover.then(cover => {
                     this.book.archive.createUrl(cover).then(url => {
                         this.setCover(url)
                     })
                 })
-                this.book.loaded.metadata.then(metadata => {
-                    this.setMetadata(metadata)
-                })
-                this.book.loaded.navigation.then(nav => {
-                    const navItem = flatten(nav.toc)
-
-                    function find (item, level = 0) {
-                        return !item.parent ? level : find(navItem.filter(parentItem => parentItem.id === item.parent)[0], ++level)
-                    }
-
-                    navItem.forEach(item => {
-                        item.level = find(item)
-                    })
-                    this.setNavigation(navItem)
-                })
+                this.setMetadata(getMetadata(this.fileName))
+                // this.book.loaded.metadata.then(metadata => {
+                //     this.setMetadata(metadata)
+                // })
+                // this.book.loaded.navigation.then(nav => {
+                //     const navItem = flatten(nav.toc)
+                //     function find (item, level = 0) {
+                //         return !item.parent ? level : find(navItem.filter(parentItem => parentItem.id === item.parent)[0], ++level)
+                //     }
+                //     navItem.forEach(item => {
+                //         item.level = find(item)
+                //     })
+                //     this.setNavigation(navItem)
+                // })
+                this.setNavigation(getNavigation(this.fileName))
             },
             initEpub (url) {
                 this.book = new Epub(url)
