@@ -26,7 +26,6 @@
     } from '../../utils/localStorage'
     import { flatten } from '../../utils/book'
     import { getLocalForage } from '../../utils/localForage'
-
     global.ePub = Epub
     export default {
         mixins: [ebookMixin],

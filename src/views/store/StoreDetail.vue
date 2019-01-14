@@ -81,7 +81,7 @@
     import { detail } from '../../api/store'
     import { px2rem, realPx } from '../../utils/utils'
     import { getLocalForage } from '../../utils/localForage'
-    import { getBookShelf, saveBookShelf } from '../../utils/localStorage'
+    import { getBookShelf, saveBookShelf, saveNavigation, saveMetadata } from '../../utils/localStorage'
     import { addToShelf, removeFromBookShelf } from '../../utils/store'
     import { storeShelfMixin } from '../../utils/mixin'
     import Epub from 'epubjs'
@@ -106,7 +106,9 @@
             },
             flatNavigation() {
                 if (this.navigation) {
-                    return Array.prototype.concat.apply([], Array.prototype.concat.apply([], this.doFlatNavigation(this.navigation.toc)))
+                    var navigation = Array.prototype.concat.apply([], Array.prototype.concat.apply([], this.doFlatNavigation(this.navigation.toc)))
+                    // console.log(navigation)
+                    return navigation
                 } else {
                     return []
                 }
@@ -225,9 +227,13 @@
                 this.book = new Epub(url)
                 this.book.loaded.metadata.then(metadata => {
                     this.metadata = metadata
+                    this.metadata.description = this.description
+                    saveMetadata(this.fileName, this.metadata)
                 })
                 this.book.loaded.navigation.then(nav => {
                     this.navigation = nav
+                    // console.log(this.fileName)
+                    saveNavigation(this.fileName, this.navigation)
                     if (this.navigation.toc && this.navigation.toc.length > 1) {
                         const candisplay = this.display(this.navigation.toc[1].href)
                         if (candisplay) {
