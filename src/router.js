@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+// 路由懒加载
 export default new Router({
     routes: [
         {
@@ -11,50 +12,50 @@ export default new Router({
         },
         {
             path: '/ebook',
-            component: () => import('./views/ebook/Index.vue'),
+            component: resolve => require(['@/views/ebook/Index'], resolve),
             children: [
                 {
                     path: ':fileName',
-                    component: () => import('./components/ebook/EbookReader.vue')
+                    component: resolve => require(['@/components/ebook/EbookReader'], resolve)
                 }
             ]
         },
         {
             path: '/store',
-            component: () => import('./views/store/Index.vue'),
+            component: resolve => require(['@/views/store/Index'], resolve),
             redirect: '/store/home',
             children: [
                 {
                     path: 'shelf',
-                    component: () => import('./views/store/StoreShelf.vue')
+                    component: resolve => require(['@/views/store/StoreShelf'], resolve)
                 },
                 {
                     path: 'category',
-                    component: () => import('./views/store/StoreCategory.vue')
+                    component: resolve => require(['@/views/store/StoreCategory'], resolve)
                 },
                 {
                     path: 'home',
-                    component: () => import('./views/store/StoreHome.vue')
+                    component: resolve => require(['@/views/store/StoreHome'], resolve)
                 },
                 {
                     path: 'list',
-                    component: () => import('./views/store/StoreList.vue')
+                    component: resolve => require(['@/views/store/StoreList'], resolve)
                 },
                 {
                     path: 'detail',
-                    component: () => import('./views/store/StoreDetail.vue')
+                    component: resolve => require(['@/views/store/StoreDetail'], resolve)
                 },
                 {
                     path: 'speaking',
-                    component: () => import('./views/store/StoreSpeaking.vue')
+                    component: resolve => require(['@/views/store/StoreSpeaking'], resolve)
                 },
                 {
                     path: 'charge',
-                    component: () => import('./views/store/StoreCharge.vue')
+                    component: resolve => require(['@/views/store/StoreCharge'], resolve)
                 },
                 {
                     path: 'mine',
-                    component: () => import('./views/store/StoreMine.vue')
+                    component: resolve => require(['@/views/store/StoreMine'], resolve)
                 }
             ]
         }

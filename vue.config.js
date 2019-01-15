@@ -14,6 +14,7 @@ const userInfoData = require('./src/mock/userInfo')
 
 module.exports = {
   baseUrl: process.env.NODE_ENV === 'production' ? './' : '/',
+
   devServer: {
     /*
     before(app) {
@@ -25,11 +26,30 @@ module.exports = {
     }
     */
   },
+
   configureWebpack: {
     performance: {
       hints: 'warning',
       maxAssetSize: 524228 * 10,
       maxEntrypointSize: 524288 * 10
+    }
+  },
+
+  css: {
+    loaderOptions: {
+      stylus: {
+        'resolve url': true,
+        'import': [
+          './src/theme'
+        ]
+      }
+    }
+  },
+
+  pluginOptions: {
+    'cube-ui': {
+      postCompile: true,
+      theme: true
     }
   }
 }

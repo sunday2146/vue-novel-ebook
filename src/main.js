@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './cube-ui'
 import VueCookie from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
