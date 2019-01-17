@@ -3,20 +3,25 @@
         <div class="store-loging" v-if="login">登录中……</div>
         <div class="store-home" v-else>
             <search-bar></search-bar>
-            <flap-card :data="random"></flap-card>
-            <scroll :top="scrollTop" :bottom="scrollBottom" @onScroll="onScroll" ref="scroll">
-                <div class="banner-wrapper">
-                    <div class="banner-img" :style="{backgroundImage:`url('${banner}')`}"></div>
-                </div>
-                <guess-you-like :data="guessYouLike"></guess-you-like>
-                <recommend :data="recommend" class="recommend"></recommend>
-                <featured :data="featured" :titleText="$t('home.featured')" :btnText="$t('home.seeAll')"
-                          class="featured"></featured>
-                <div class="category-list-wrapper" v-for="(item, index) in categoryList" :key="index">
-                    <category-book :data="item"></category-book>
-                </div>
-                <category class="categories" :data="categories"></category>
-            </scroll>
+            <div v-if="lists != null">
+                <flap-card :data="random"></flap-card>
+                <scroll :top="scrollTop" :bottom="scrollBottom" @onScroll="onScroll" ref="scroll">
+                    <div class="banner-wrapper">
+                        <div class="banner-img" :style="{backgroundImage:`url('${banner}')`}"></div>
+                    </div>
+                    <guess-you-like :data="guessYouLike"></guess-you-like>
+                    <recommend :data="recommend" class="recommend"></recommend>
+                    <featured :data="featured" :titleText="$t('home.featured')" :btnText="$t('home.seeAll')"
+                              class="featured"></featured>
+                    <div class="category-list-wrapper" v-for="(item, index) in categoryList" :key="index">
+                        <category-book :data="item"></category-book>
+                    </div>
+                    <category class="categories" :data="categories"></category>
+                </scroll>
+            </div>
+            <div class="" v-else="!lists">
+                <loading></loading>
+            </div>
             <nav-bar></nav-bar>
         </div>
     </div>
@@ -34,10 +39,12 @@
     import CategoryBook from '../../components/home/CategoryBook'
     import Category from '../../components/home/Category'
     import NavBar from '../../components/common/NavBar'
+    import Loading from "../../components/base/Loading/Loading";
 
     export default {
         mixins: [storeHomeMixin],
         components: {
+            Loading,
             NavBar,
             Category,
             CategoryBook,
@@ -50,6 +57,7 @@
         },
         data() {
             return {
+                lists: null,
                 scrollBottom: 55,
                 scrollTop: 94,
                 random: null,
@@ -108,15 +116,16 @@
             this.login = false
             home(this.openid).then(response => {
                 if (response && response.status === 200 && response.data && response.data.err_no === 0) {
-                    const data = response.data.data
-                    const randomIndex = Math.floor(Math.random() * data.random.length)
-                    this.random = data.random[randomIndex]
-                    this.banner = data.banner
-                    this.guessYouLike = data.guessYouLike
-                    this.recommend = data.recommend
-                    this.featured = data.featured
-                    this.categoryList = data.categoryList
-                    this.categories = data.categories
+                    this.lists = response.data.data
+                    console.log(this.lists)
+                    const randomIndex = Math.floor(Math.random() * this.lists.random.length)
+                    this.random = this.lists.random[randomIndex]
+                    this.banner = this.lists.banner
+                    this.guessYouLike = this.lists.guessYouLike
+                    this.recommend = this.lists.recommend
+                    this.featured = this.lists.featured
+                    this.categoryList = this.lists.categoryList
+                    this.categories = this.lists.categories
                 }
             })
         }
