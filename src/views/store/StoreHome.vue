@@ -7,19 +7,21 @@
                 <flap-card :data="random"></flap-card>
                 <scroll :top="scrollTop" :bottom="scrollBottom" @onScroll="onScroll" ref="scroll">
                     <div class="banner-wrapper">
-                        <div class="banner-img" :style="{backgroundImage:`url('${banner}')`}"></div>
+                        <div v-if="banner != null" class="banner-img" :style="{backgroundImage:`url('${banner}')`}"></div>
+                        <div v-else><loading></loading></div>
                     </div>
-                    <guess-you-like :data="guessYouLike"></guess-you-like>
-                    <recommend :data="recommend" class="recommend"></recommend>
-                    <featured :data="featured" :titleText="$t('home.featured')" :btnText="$t('home.seeAll')"
-                              class="featured"></featured>
-                    <div class="category-list-wrapper" v-for="(item, index) in categoryList" :key="index">
-                        <category-book :data="item"></category-book>
-                    </div>
-                    <category class="categories" :data="categories"></category>
+                    <div v-if="guessYouLike != null"><guess-you-like :data="guessYouLike"></guess-you-like></div>
+                    <div v-else><loading></loading></div>
+                    <div v-if="recommend != null"><recommend :data="recommend" class="recommend"></recommend></div>
+                    <div><loading></loading></div>
+                    <div v-if="featured != null"><featured :data="featured" :titleText="$t('home.featured')" :btnText="$t('home.seeAll')" class="featured"></featured></div>
+                    <div v-if="categoryList != null" class="category-list-wrapper" v-for="(item, index) in categoryList" :key="index"><category-book :data="item"></category-book></div>
+                    <div v-else><loading></loading></div>
+                    <div v-if="categories != null"><category class="categories" :data="categories"></category></div>
+                    <div v-else><loading></loading></div>
                 </scroll>
             </div>
-            <div class="" v-else="!lists">
+            <div v-else>
                 <loading></loading>
             </div>
             <nav-bar></nav-bar>
@@ -39,7 +41,7 @@
     import CategoryBook from '../../components/home/CategoryBook'
     import Category from '../../components/home/Category'
     import NavBar from '../../components/common/NavBar'
-    import Loading from "../../components/base/Loading/Loading";
+    import Loading from '../../components/base/Loading/Loading'
 
     export default {
         mixins: [storeHomeMixin],
@@ -117,7 +119,7 @@
             home(this.openid).then(response => {
                 if (response && response.status === 200 && response.data && response.data.err_no === 0) {
                     this.lists = response.data.data
-                    console.log(this.lists)
+                    // console.log(this.lists)
                     const randomIndex = Math.floor(Math.random() * this.lists.random.length)
                     this.random = this.lists.random[randomIndex]
                     this.banner = this.lists.banner
