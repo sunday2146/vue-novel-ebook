@@ -13,11 +13,12 @@
                     <div v-if="guessYouLike != null"><guess-you-like :data="guessYouLike"></guess-you-like></div>
                     <div v-else><loading></loading></div>
                     <div v-if="recommend != null"><recommend :data="recommend" class="recommend"></recommend></div>
-                    <div><loading></loading></div>
+                    <div v-else><loading></loading></div>
                     <div v-if="featured != null"><featured :data="featured" :titleText="$t('home.featured')" :btnText="$t('home.seeAll')" class="featured"></featured></div>
+                    <div v-else><loading></loading></div>
                     <div v-if="categoryList != null" class="category-list-wrapper" v-for="(item, index) in categoryList" :key="index"><category-book :data="item"></category-book></div>
                     <div v-else><loading></loading></div>
-                    <div v-if="categories != null"><category class="categories" :data="categories"></category></div>
+                    <div v-if="categories != null"><category :data="categories" class="categories" ></category></div>
                     <div v-else><loading></loading></div>
                 </scroll>
             </div>
